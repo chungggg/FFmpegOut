@@ -17,7 +17,9 @@ namespace FFmpegOut
         VP9Default,
         Hap,
         HapAlpha,
-        HapQ
+        HapQ,
+        H264AMD,
+        HevcAMD
     }
 
     static public class FFmpegPresetExtensions
@@ -39,6 +41,8 @@ namespace FFmpegOut
                 case FFmpegPreset.Hap:             return "HAP (QuickTime)";
                 case FFmpegPreset.HapAlpha:        return "HAP Alpha (QuickTime)";
                 case FFmpegPreset.HapQ:            return "HAP Q (QuickTime)";
+                case FFmpegPreset.H264AMD:         return "H.264 AMD (MP4)";
+                case FFmpegPreset.HevcAMD:         return "HEVC AMD (MP4)";
             }
             return null;
         }
@@ -52,7 +56,9 @@ namespace FFmpegOut
                 case FFmpegPreset.H264Lossless420:
                 case FFmpegPreset.H264Lossless444:
                 case FFmpegPreset.HevcDefault:
-                case FFmpegPreset.HevcNvidia:      return ".mp4";
+                case FFmpegPreset.HevcNvidia:
+                case FFmpegPreset.H264AMD:
+                case FFmpegPreset.HevcAMD:         return ".mp4";
                 case FFmpegPreset.ProRes422:
                 case FFmpegPreset.ProRes4444:      return ".mov";
                 case FFmpegPreset.VP9Default:
@@ -81,6 +87,8 @@ namespace FFmpegOut
                 case FFmpegPreset.Hap:             return "-c:v hap";
                 case FFmpegPreset.HapAlpha:        return "-c:v hap -format hap_alpha";
                 case FFmpegPreset.HapQ:            return "-c:v hap -format hap_q";
+                case FFmpegPreset.H264AMD:         return "-c:v h264_amf -pix_fmt yuv420p";
+                case FFmpegPreset.HevcAMD:         return "-c:v hevc_amf -pix_fmt yuv420p";
             }
             return null;
         }
